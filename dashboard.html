@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Dashboard</h2>
+
+<button onclick="load()">Cargar datos</button>
+
+<p id="data"></p>
+
+<script>
+const API = "https://TU-BACKEND.railway.app";
+
+async function load(){
+
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(API + "/dashboard/1", {
+    headers:{
+      Authorization: "Bearer " + token
+    }
+  });
+
+  const data = await res.json();
+
+  document.getElementById("data").innerText =
+    "IVA: $" + data.iva;
+}
+</script>
+
+</body>
+</html>
